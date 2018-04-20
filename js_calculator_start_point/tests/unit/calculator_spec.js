@@ -57,7 +57,6 @@ describe('calculator', function () {
     calculator.operatorClick("=");
     assert.equal(4, calculator.runningTotal);
   })
-
   //   - calculator.numberClick()
   it('can click on a number', function(){
     calculator.clearClick();
@@ -65,7 +64,19 @@ describe('calculator', function () {
     assert.equal(8, calculator.runningTotal);
   })
   //   - calculator.operatorClick()
+  it('can click on an operator', function(){
+    calculator.clearClick();
+    calculator.numberClick(8);
+    calculator.operatorClick("/");
+    assert.equal(8, calculator.runningTotal);
+    assert.equal("/", calculator.previousOperator);
+  })
   //   - calculator.clearClick()
-
+  it('can click on clear button', function(){
+    calculator.clearClick();
+    calculator.numberClick(8);
+    calculator.clearClick();
+    assert.equal(0, calculator.runningTotal);
+  })
 
 });
