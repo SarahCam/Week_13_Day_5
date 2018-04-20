@@ -59,6 +59,11 @@ describe('calculator', function () {
   })
 
   //   - calculator.numberClick()
+  it('can click on a number', function(){
+    calculator.clearClick();
+    calculator.numberClick(8);
+    assert.equal(8, calculator.runningTotal);
+  })
   //   - calculator.operatorClick()
   //   - calculator.clearClick()
 
