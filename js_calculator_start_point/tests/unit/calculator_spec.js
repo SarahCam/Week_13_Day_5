@@ -49,6 +49,15 @@ describe('calculator', function () {
     assert.equal(8, calculator.runningTotal);
   })
   //   - calculator.divide()
+  it('can divide', function(){
+    calculator.clearClick();
+    calculator.numberClick(8);
+    calculator.operatorClick("/");
+    calculator.numberClick(2);
+    calculator.operatorClick("=");
+    assert.equal(4, calculator.runningTotal);
+  })
+
   //   - calculator.numberClick()
   //   - calculator.operatorClick()
   //   - calculator.clearClick()
