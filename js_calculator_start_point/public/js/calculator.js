@@ -26,7 +26,6 @@ Calculator.prototype = {
     if (this.runningTotal == 'Infinity') {
       this.runningTotal = 'Error';
     }
-
   },
 
   numberClick: function(number) {
@@ -47,7 +46,15 @@ Calculator.prototype = {
 
     // if there was a previous operator recorded as having been clicked, perform
     // the operation for the previous operator
-    if (this.previousTotal && this.previousOperator) {
+
+    // ig the previous subtotal was 'Error' then make the running total equal to 'Error':
+    if (this.previousTotal == 'Error'){
+      console.log("WE had an error for last sub-total");
+      this.runningTotal = 'Error';
+    }
+
+    // Only evaluate the next calculation if the previous total was not an 'Error':
+    if (this.previousTotal && this.previousOperator && (this.previousTotal != 'Error')) {
       switch (this.previousOperator) {
         case ('+'):
         this.add(this.runningTotal);
