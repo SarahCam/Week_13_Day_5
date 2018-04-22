@@ -443,8 +443,16 @@ describe('calculator functionality', function() {
   });
 
   // Exceptional circumstances -
-  // Divide by zero scenario
-  it('should be able to handle a divide by zero correctly', function(){
+  // Divide by zero scenario - presently the code will return the string 'Infinity'
+  // Normal calculators return the string 'Error', so this test checks that
+  // is now corrected in the code to return 'Error' instead:
+  it('should be able to handle a divide by zero correctly - return Error, not Infinity', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number8')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('Error');
   });
 
   // User enters multiple operations without numbers inbetween:
