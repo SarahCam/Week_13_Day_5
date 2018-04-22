@@ -21,6 +21,12 @@ Calculator.prototype = {
 
   divide: function(number){
     this.runningTotal = parseFloat(this.previousTotal) / parseFloat(number);
+    // Add a check for divide by zero scenario, so that the running total
+    // is displayed as 'Error' instead of 'Infinity'
+    if (this.runningTotal == 'Infinity') {
+      this.runningTotal = 'Error';
+    }
+
   },
 
   numberClick: function(number) {
@@ -35,7 +41,6 @@ Calculator.prototype = {
     }
     // concatenate the clicked number to the running total
     this.runningTotal = parseFloat('' + this.runningTotal + number);
-
   },
 
   operatorClick: function(operator) {
