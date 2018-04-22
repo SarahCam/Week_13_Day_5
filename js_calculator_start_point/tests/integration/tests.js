@@ -348,6 +348,11 @@ describe('calculator functionality', function() {
 
   // Test the clr button functions as expected:
   it('should be able to clear the running total: clr button', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number7')).click();
+    running_total = element(by.css('#running_total'))
+    element(by.css('#clear')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0');
   });
 
 // Test for a range of numbers:
