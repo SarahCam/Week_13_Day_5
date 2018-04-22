@@ -466,8 +466,15 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('Error');
   });
 
-  // User enters multiple operations without numbers inbetween:
-  it('should be able to handle user adding multiple operations by mistake', function(){
+  // This test is currently failing - User enters multiple operations without number inbetween -
+  // last operation takes precedence:
+  it('should be able to handle user adding multiple operations by mistake, and evaluate last operation only', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number8')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number2')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('10');
   });
 
 });
