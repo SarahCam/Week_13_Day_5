@@ -455,6 +455,17 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('Error');
   });
 
+  it('should be able to handle a divide by zero  in a composite operation - i.e. return Error, not NaN', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number8')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number2')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('Error');
+  });
+
   // User enters multiple operations without numbers inbetween:
   it('should be able to handle user adding multiple operations by mistake', function(){
   });
