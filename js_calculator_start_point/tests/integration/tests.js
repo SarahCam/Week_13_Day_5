@@ -11,7 +11,13 @@ describe('calculator functionality', function() {
 
   // write integration tests here in the form of "it should do something..."
 
-  // Test all buttons work:
+  // Test all number buttons work:
+  it('should have working number buttons - number 0', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number0')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0')
+  });
+
   it('should have working number buttons - number 1', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number1')).click();
@@ -66,16 +72,9 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('9')
   });
 
-  it('should have working number buttons -number 0', function(){
-    running_total = element(by.css('#running_total'))
-    element(by.css('#number0')).click();
-    expect(running_total.getAttribute('value')).to.eventually.equal('0')
-  });
-
   // Test that each of the arithmetical operations work to
   // update the display with the result of the operation:
-
-  it('should have a working + operator', function(){
+  it('should have a working + operator, followed by + operator', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number2')).click();
     element(by.css('#operator_add')).click();
@@ -130,7 +129,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('5');
   });
 
-  // Test we chain multiple operations together:
+  // Test we chain multiple operations together - 2 operations followed by =:
   it('should be able to perform a composite operation: + and - and =', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number2')).click();
@@ -153,6 +152,39 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('5');
   });
 
+  it('should be able to perform a composite operation: + and * and =', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number2')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('21');
+  });
+
+  it('should be able to perform a composite operation: + and + and =', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number2')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('10');
+  });
+
+  it('should be able to perform a composite operation: * and - and =', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number2')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_subtract')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('7');
+  });
+
   it('should be able to perform a composite operation: * and / and =', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number9')).click();
@@ -164,6 +196,53 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('2');
   });
 
+  it('should be able to perform a composite operation: * and * and =', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number2')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('30');
+  });
+
+  it('should be able to perform a composite operation: * and + and =', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number2')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('13');
+  });
+
+  it('should be able to perform a composite operation: - and - and =', function(){
+  });
+
+  it('should be able to perform a composite operation: - and / and =', function(){
+  });
+
+  it('should be able to perform a composite operation: - and * and =', function(){
+  });
+
+  it('should be able to perform a composite operation: - and + and =', function(){
+  });
+
+  it('should be able to perform a composite operation: / and - and =', function(){
+  });
+
+  it('should be able to perform a composite operation: / and / and =', function(){
+  });
+
+  it('should be able to perform a composite operation: / and * and =', function(){
+  });
+
+  it('should be able to perform a composite operation: / and + and =', function(){
+  });
+
+  // Test we chain multiple operations together - 3 operations followed by =:
   it('should be able to perform a composite operation: + and * and / and =', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number5')).click();
@@ -177,6 +256,16 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('4');
   });
 
+  it('should be able to perform a composite operation: - and * and / and =', function(){
+  });
+
+  it('should be able to perform a composite operation: - and + and * and =', function(){
+  });
+
+  // Test the clr button functions as expected:
+  it('should be able to clear the running total: clr button', function(){
+  });
+
 // Test for a range of numbers:
 // (positive, negative, decimals, very large numbers)
   it('should be able to calulate sums that evaluate to a negative number', function(){
@@ -188,7 +277,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('-2');
   });
 
-  it('should be able to calulate sums that evaluate to a decimal number', function(){
+  it('should be able to calulate sums that evaluate to a 1dp decimal number', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number5')).click();
     element(by.css('#operator_divide')).click();
@@ -197,7 +286,16 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('2.5');
   });
 
-  // it('should be able to calulate sums that evaluate to a very large number', function(){
+  it('should be able to calulate sums that evaluate to a 2dp decimal number', function(){
+  });
+
+  it('should be able to calulate sums that evaluate to a 3dp decimal number', function(){
+  });
+
+  it('should be able to calulate sums that evaluate to a  recurring dp decimal number', function(){
+  });
+
+  it('should be able to calulate sums that evaluate to a very large number', function(){
   //   running_total = element(by.css('#running_total'))
   //   element(by.css('#number1')).click();
   //   element(by.css('#number0')).click();
@@ -224,6 +322,12 @@ describe('calculator functionality', function() {
   //   element(by.css('#number0')).click();
   //   element(by.css('#operator_equals')).click();
   //   expect(running_total.getAttribute('value')).to.eventually.equal('1e+20');
-  // });
+  });
+
+  // Exceptional circumstances,e.g. -
+  // Divide by zero scenario
+  // User enters multiple operations without numbers inbetween:
+  it('should be able to handle a divide by zero correctly', function(){
+  });
 
 });
