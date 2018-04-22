@@ -371,12 +371,40 @@ describe('calculator functionality', function() {
   });
 
   it('should be able to calulate sums that evaluate to a 2dp decimal number', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number9')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number4')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('2.25');
   });
 
   it('should be able to calulate sums that evaluate to a 3dp decimal number', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number9')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number8')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('1.125');
   });
 
-  it('should be able to calulate sums that evaluate to a  recurring dp decimal number', function(){
+  it('should be able to calulate sums that evaluate to a recurring dp decimal number - no rounding required for last digit', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number7')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('2.3333333333333333');
+  });
+
+  // This test is currently failing, as the calculator incorrectly rounds down the last digit:
+  it('should be able to calulate sums that evaluate to a recurring dp decimal number - round up last digit', function(){
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number8')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number3')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('2.6666666666666667');
   });
 
   it('should be able to calulate sums that evaluate to a very large number', function(){
