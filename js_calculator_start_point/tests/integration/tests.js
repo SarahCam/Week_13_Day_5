@@ -393,6 +393,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('1.125');
   });
 
+  // This test is currently failing, as the calculator incorrectly rounds up the last digit to 5:
   it('should be able to calulate sums that evaluate to a recurring dp decimal number - no rounding required for last digit', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number7')).click();
@@ -402,7 +403,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('2.3333333333333333');
   });
 
-  // This test is currently failing, as the calculator incorrectly rounds down the last digit:
+  // This test is currently failing, as the calculator incorrectly rounds down the last digit to 5:
   it('should be able to calulate sums that evaluate to a recurring dp decimal number - round up last digit', function(){
     running_total = element(by.css('#running_total'))
     element(by.css('#number8')).click();
@@ -413,38 +414,41 @@ describe('calculator functionality', function() {
   });
 
   it('should be able to calulate sums that evaluate to a very large number', function(){
-  //   running_total = element(by.css('#running_total'))
-  //   element(by.css('#number1')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#operator_multiply')).click();
-  //   element(by.css('#number1')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#number0')).click();
-  //   element(by.css('#operator_equals')).click();
-  //   expect(running_total.getAttribute('value')).to.eventually.equal('1e+20');
+    running_total = element(by.css('#running_total'))
+    element(by.css('#number1')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number1')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('100000000000000000000');
   });
 
-  // Exceptional circumstances,e.g. -
+  // Exceptional circumstances -
   // Divide by zero scenario
-  // User enters multiple operations without numbers inbetween:
   it('should be able to handle a divide by zero correctly', function(){
+  });
+
+  // User enters multiple operations without numbers inbetween:
+  it('should be able to handle user adding multiple operations by mistake', function(){
   });
 
 });
